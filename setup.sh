@@ -25,7 +25,6 @@ git rm --cached $(git ls-files)
 msg "Grabbing one file from the \`$SOURCE\` branch so that a commit can be made"
 git checkout "$SOURCE" index.Rmd
 git commit -m "Initial commit on $TARGET branch"
-git branch --set-upstream-to=origin/$TARGET $TARGET
 git push origin $TARGET
 msg "Returning to the \`$SOURCE\` branch"
 git checkout -f "$SOURCE"
@@ -38,4 +37,5 @@ git subtree add --prefix=public \
 git@github.com:$USERNAME/$USERNAME.github.io.git $TARGET --squash
 msg "Pulling down the just committed file to help avoid merge conflicts"
 git subtree pull --prefix=public \
-git@github.com:$USERNAME/$USERNAME.github.io.git $TARGET
+  git@github.com:$USERNAME/$USERNAME.github.io.git $TARGET
+git branch --set-upstream-to=origin/$TARGET $TARGET
